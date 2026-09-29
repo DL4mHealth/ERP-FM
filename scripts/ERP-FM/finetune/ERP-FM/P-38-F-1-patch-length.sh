@@ -1,0 +1,175 @@
+#!/bin/bash
+
+# Training
+
+# patch length = 100
+# PD-SIM
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-PD-SIM-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset PD-SIM \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# PD-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-PD-ODD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset PD-ODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# ADHD-WMRI
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-ADHD-WMRI-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset ADHD-WMRI \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# SCPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-SCPD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset SCPD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# RLPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-RLPD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset RLPD \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# AOPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-AOPD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset AOPD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-AODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-AODD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-AODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-VODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-VODD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-VODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-FLANKER
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-FLANKER-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-FLANKER \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# NSERP-MSIT
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-NSERP-MSIT-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset NSERP-MSIT \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+## NSERP-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-NSERP-ODD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset NSERP-ODD \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# TDBrain-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p100/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-TDBrain-ODD-smooth-l1-0.5-mixed-e12-d2-p100 --model ERP-FM --data MultiDatasets \
+--training_dataset TDBrain-ODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 100 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+
+
+## patch length = 200
+# PD-SIM
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-PD-SIM-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset PD-SIM \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# PD-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-PD-ODD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset PD-ODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# ADHD-WMRI
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-ADHD-WMRI-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset ADHD-WMRI \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# SCPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-SCPD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset SCPD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# RLPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-RLPD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset RLPD \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# AOPD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-AOPD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset AOPD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice disease --use_subject_vote --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-AODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-AODD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-AODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-VODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-VODD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-VODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# CESCA-FLANKER
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-CESCA-FLANKER-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset CESCA-FLANKER \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# NSERP-MSIT
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-NSERP-MSIT-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset NSERP-MSIT \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+## NSERP-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-NSERP-ODD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset NSERP-ODD \
+--e_layers 12 --batch_size 32 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15
+
+# TDBrain-ODD
+python -u run.py --method ERP-FM --task_name finetune --is_training 1 --root_path ./dataset/200Hz/ \
+--checkpoints_path ./checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed-p200/nh8_el12_dl2_dm128_df256_seed41/ --model_id P-38-F-TDBrain-ODD-smooth-l1-0.5-mixed-e12-d2-p200 --model ERP-FM --data MultiDatasets \
+--training_dataset TDBrain-ODD \
+--e_layers 12 --batch_size 128 --n_heads 8 --d_model 128 --d_ff 256 --patch_len 200 --classify_choice stimulus --swa \
+--des 'Exp' --itr 5 --learning_rate 0.0001 --train_epochs 200 --patience 15

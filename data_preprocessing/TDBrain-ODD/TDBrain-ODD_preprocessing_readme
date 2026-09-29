@@ -1,0 +1,35 @@
+Dataset raw name: Two-Decades Brainclinics Archive for Insights in Neurophysiology (TD-BRAIN)
+Dataset Link: https://brainclinics.com/resources  (3.1 version)
+Paper Link: https://www.nature.com/articles/s41597-022-01409-z
+
+Short name: TDBrain-ODD (only use oddball task)
+
+
+
+
+
+III. Output Format
+
+Each subject/session's processed data is saved as:
+
+- `X.dat`: EEG data with shape `(N, T, C)`
+- `y.dat`: Corresponding labels with shape `(N, 4)`
+- `meta.json`: Metadata containing channel names, sampling rate, task information, and other relevant information
+
+Where:
+- `N`: number of trials
+- `T`: number of time points per trial, e.g., 250 for a 1-second epoch at 250 Hz
+- `C`: number of EEG channels
+
+Label Structure (`y`):
+
+Each label row contains:
+
+`[disease_id, stimulus_type, subject_id, task_id]`
+
+Where:
+- `disease_id`: `-1`, set to unknown for now, wait for full ERP dataset release
+- `stimulus_type`: 0: "standard", 1: "target"
+- `subject_id`: numeric identifier derived from `sub-XXX`
+- `task_id`: 1 visual oddball
+
