@@ -41,14 +41,14 @@ We distinguish **ERP** recordings used as transient event-related responses from
 | EPSD                           |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds003474/versions/1.1.0)                                                                                                                           |
 | ERP CORE                       |                                 7 | [Original OSF project](https://osf.io/thsqg/)                                                                                                                                                 |
 | Go-Nogo                        |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds002680/versions/1.0.0)                                                                                                                           |
-| HBN-EEG (releases 1–11)        |                                 3 | [HBN-EEG release index](https://nemar.org/dataexplorer/local?search=HBN-EEG)                                                                                                                  |
+| HBN-EEG (releases 1–11)        |                                 3 | [OpenNeuro](https://openneuro.org/search?query={%22keywords%22:[%22Healthy%20Brain%20Network%20%22]})                                                                                                                  |
 | HeartBEAM                      |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds006480/versions/1.0.0)                                                                                                                           |
 | IMS-ODD                        |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds003570/versions/1.0.0)                                                                                                                           |
-| MMPST                          |                                 4 | [OpenNeuro](https://openneuro.org/datasets/ds004315/versions/1.0.0)                                                                                                                           |
+| MMPST                          |                                 4 | [Experiment 1](https://openneuro.org/datasets/ds004315/versions/1.0.0) · [Experiment 2](https://openneuro.org/datasets/ds004317/versions/1.0.3)                                                                                                                           |
 | MRI-AODD                       |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds003061/versions/1.1.2)                                                                                                                           |
 | mTBI (separate task releases)  |                                 3 | [DPX](https://openneuro.org/datasets/ds005114/versions/1.0.0) · [ODD](https://openneuro.org/datasets/ds003522/versions/1.1.0) · [VWM](https://openneuro.org/datasets/ds003523/versions/1.1.0) |
 | NAFPS                          |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds005565/versions/1.0.3)                                                                                                                           |
-| PLAF (two experiment releases) |                                 2 | [Experiment 1](https://openneuro.org/datasets/ds003822/versions/1.1.0) · [Experiment 2](https://openneuro.org/datasets/ds003753/versions/1.1.0)                                               |
+| PLAF (two experiment releases) |                                 2 | [Exp #1](https://openneuro.org/datasets/ds003822/versions/1.1.0) · [Exp #2](https://openneuro.org/datasets/ds003753/versions/1.1.0)                                               |
 | PSTCC                          |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds004532/versions/1.2.0)                                                                                                                           |
 | Runabout                       |                                 1 | [OpenNeuro](https://openneuro.org/datasets/ds003620/versions/1.1.1)                                                                                                                           |
 | SICE                           |                                 1 | [Dryad](https://datadryad.org/dataset/doi:10.5061/dryad.6wwpzgmx4)                                                                                                                            |
@@ -183,16 +183,18 @@ checkpoints/ERP-FM/pretrain/ERP-FM/P-38-e12-d2-smooth-l1-0.5-mixed/nh8_el12_dl2_
 
 ## Quick Start
 
-The following example reproduces the key pipeline in **Table 10** of the paper on **RLPD** (56 subjects; healthy controls versus Parkinson's disease): **single-trial self-supervised pretraining → averaged-trial fine-tuning → subject-level majority voting**. ERP-FM is pretrained on single trials, then fine-tuned on higher-SNR ERPs formed by averaging trials from the same subject and event/condition. Subject-level predictions are obtained by majority voting across the averaged ERPs belonging to each subject.
+The following example reproduces the key pipeline in **Table 10** of the paper on **RLPD** (56 subjects; healthy controls versus Parkinson's disease): **single-trial self-supervised pretraining → averaged-trial fine-tuning → subject-level majority voting**. ERP-FM is pretrained on single trials (use our checkpoints), then fine-tuned on higher-SNR ERPs formed by averaging trials from the same subject and event/condition. Subject-level predictions are obtained by majority voting across the averaged ERPs belonging to each subject.
 
 **RLPD results from Table 10** (mean ± standard deviation over five runs):
 
 | Training and inference setting                  | Evaluation level          |     Accuracy (%) |           F1 (%) |        AUROC (%) |
 |:------------------------------------------------|:--------------------------|-----------------:|-----------------:|-----------------:|
-| Single-trial supervised learning from scratch   | Trial                     |     64.34 ± 4.99 |     60.07 ± 5.40 |     67.41 ± 7.80 |
-| Single-trial fine-tuning                        | Subject (majority voting) |     73.33 ± 6.24 |     72.77 ± 6.37 |     83.33 ± 5.83 |
-| Averaged-trial fine-tuning                      | Trial (averaged ERP)      |     79.20 ± 3.57 |     79.14 ± 3.58 |     89.13 ± 3.97 |
-| **Averaged-trial fine-tuning + subject voting** | **Subject**               | **95.00 ± 4.08** | **94.97 ± 4.11** | **98.89 ± 1.62** |
+| Single-trial supervised                         | Trial                     |     64.34 ± 4.99 |     60.07 ± 5.40 |     67.41 ± 7.80 |
+| Single-trial supervised + subject voting        | Subject                   |     63.33 ± 11.30|     61.50 ± 12.54|     76.67 ± 13.56|
+| Single-trial fine-tuning                        | Trial                     |     74.81 ± 2.96 |     71.42 ± 3.22 |     79.55 ± 5.76 |
+| Single-trial fine-tuning + subject voting       | Subject                   |     73.33 ± 6.24 |     72.77 ± 6.37 |     83.33 ± 5.83 |
+| Averaged-trial fine-tuning                      | Trial                     |     79.20 ± 3.57 |     79.14 ± 3.58 |     89.13 ± 3.97 |
+| Averaged-trial fine-tuning + subject voting     | Subject                   | **95.00 ± 4.08** | **94.97 ± 4.11** | **98.89 ± 1.62** |
 
 This example illustrates the complementary strengths of abundant single-trial data for self-supervised pretraining and higher-SNR averaged ERPs for downstream adaptation. Trial-level and subject-level metrics are reported separately; the subject-level results aggregate predictions from the same person.
 
